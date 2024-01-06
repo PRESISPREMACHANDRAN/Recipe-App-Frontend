@@ -27,7 +27,7 @@ const ViewAll = () => {
                   <div className="col col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4  d-flex allign-items-stretch">
                     <div className="card">
                       <img
-                        src={}
+                        src={value.image}
                         className="card-img-top"
                         alt="Recipe image"
                       />
