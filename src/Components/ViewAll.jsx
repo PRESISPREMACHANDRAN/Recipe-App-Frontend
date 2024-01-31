@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import axios from "axios";
 
 const ViewAll = () => {
-  const [data, changeData] = useState([
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-    { image: "", recipeName: "sdd", cuisineType: "fgghg" },
-  ]);
+  const [recipe, changeRecipe] = useState({data:[]});
+
+  const fetchData=()=>{
+    axios.get("http://localhost:4000/viewAll").then(
+      (response)=>{
+        changeRecipe(response.data);
+      }
+    );
+  }
+
+  useEffect(()=>{fetchData()},[])
+
+
 
   return (
     <div>
@@ -22,12 +24,12 @@ const ViewAll = () => {
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <div className="row g-3">
-              {data.map((value, index) => {
+              {recipe.data.map((value, index) => {
                 return (
                   <div className="col col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4  d-flex allign-items-stretch">
                     <div className="card">
                       <img
-                        src={value.image}
+                        src={value.recipeImage}
                         className="card-img-top"
                         alt="Recipe image"
                       />
